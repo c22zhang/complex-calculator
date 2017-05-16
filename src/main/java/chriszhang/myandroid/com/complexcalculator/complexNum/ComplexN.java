@@ -42,6 +42,17 @@ public class ComplexN {
     return this.imaginaryPart;
   }
   
+  public PolarComplexNo toPolar(){
+	  if(getRealPart() == 0 && getImaginaryPart() == 0)
+		  return new PolarComplexNo(0, 0);
+	  double amplitude = Arithmetic.roundDouble(Math.sqrt(getRealPart() * getRealPart() + getImaginaryPart() * getImaginaryPart()));
+	  double phase;
+	  if(getRealPart() == 0)
+		  phase = Arithmetic.roundDouble(Math.PI / 2);
+	  else
+		  phase = Arithmetic.roundDouble(Math.atan(getImaginaryPart()/getRealPart()));
+	  return new PolarComplexNo(amplitude, phase);
+  }
   /**
    * returns String representation of a +/- bi of this object
    * @return String in form of a + bi if b is positive or a - bi if b is negative
